@@ -66,7 +66,7 @@ namespace RGSK
         }
 
         [System.Serializable]
-        public class BodyColorAndRims 
+        public class BodyColorAndRims
         {
             public string vehicle_name;
             public Texture texture;
@@ -89,7 +89,7 @@ namespace RGSK
         }
         #endregion
 
-        public enum State { Main, VehicleSelect, TrackSelect, Customize, Settings, Loading }
+        public enum State { Main, VehicleSelect, TrackSelect, Customize, Settings, Loading, RaceTeam }
         public State state;
 
         [Header("Vehicle settings")]
@@ -110,6 +110,7 @@ namespace RGSK
         public GameObject settingsPanel;
         public GameObject promptPanel;
         public GameObject loadingPanel;
+        public GameObject raceTeamPanel;
 
         [Header("Top Panel UI")]
         public Text playerCurrency;
@@ -158,7 +159,7 @@ namespace RGSK
         public float rotateSpeed = 5.0f;
         public int maxOpponents = 5;
         [Range(1,7)]public int raceTypes = 7;
-        
+
         //Private vars
         private int vehicleIndex;
         private int prevVehicleIndex;
@@ -254,6 +255,7 @@ namespace RGSK
                     customizePanel.SetActive(false);
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(false);
+                    raceTeamPanel.SetActive(false);
 
                     if (itemPrice) itemPrice.text = string.Empty;
 
@@ -268,6 +270,7 @@ namespace RGSK
                     customizePanel.SetActive(false);
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(false);
+                    raceTeamPanel.SetActive(false);
 
                     if (vehicleName) vehicleName.text = menuVehicles[vehicleIndex].name;
 
@@ -292,6 +295,7 @@ namespace RGSK
                     customizePanel.SetActive(false);
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(false);
+                    raceTeamPanel.SetActive(false);
 
                     if (trackName) trackName.text = menuTracks[trackIndex].name;
 
@@ -328,6 +332,7 @@ namespace RGSK
                     customizePanel.SetActive(true);
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(false);
+                    raceTeamPanel.SetActive(false);
 
                     //Calculate the in cart currency
                     incartCr = bodyColPrice + rimPrice + upgradePrice;
@@ -363,6 +368,7 @@ namespace RGSK
                     customizePanel.SetActive(false);
                     settingsPanel.SetActive(true);
                     loadingPanel.SetActive(false);
+                    raceTeamPanel.SetActive(false);
 
                     if (menuState) menuState.text = "SETTINGS";
 
@@ -375,8 +381,22 @@ namespace RGSK
                     customizePanel.SetActive(false);
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(true);
+                    raceTeamPanel.SetActive(false);
 
                     break;
+
+               case State.RaceTeam:
+                    mainPanel.SetActive(false);
+                    vehicleSelectPanel.SetActive(false);
+                    trackSelectPanel.SetActive(false);
+                    customizePanel.SetActive(false);
+                    settingsPanel.SetActive(false);
+                    loadingPanel.SetActive(false);
+                    raceTeamPanel.SetActive(true);
+
+                    break;
+
+
             }
         }
 
@@ -451,7 +471,7 @@ namespace RGSK
          if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
          {
              Vector2 fingerPos = Input.GetTouch(0).deltaPosition;
-        
+
              menuVehicles[vehicleIndex].vehicle.Rotate(0, -fingerPos.x, 0);
          }
 #endif
@@ -1163,6 +1183,6 @@ namespace RGSK
         {
             if (SoundManager.instance) SoundManager.instance.PlaySound("Button", true);
         }
-        
+
     }
 }
