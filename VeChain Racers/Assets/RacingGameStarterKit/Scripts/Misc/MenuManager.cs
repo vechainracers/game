@@ -89,7 +89,7 @@ namespace RGSK
         }
         #endregion
 
-        public enum State { Main, VehicleSelect, TrackSelect, Customize, Settings, Loading, RaceTeam }
+        public enum State { Main, VehicleSelect, TrackSelect, Customize, Settings, Loading, RaceTeam, Leaderboard, Profile, Payout }
         public State state;
 
         [Header("Vehicle settings")]
@@ -111,6 +111,9 @@ namespace RGSK
         public GameObject promptPanel;
         public GameObject loadingPanel;
         public GameObject raceTeamPanel;
+        public GameObject leaderboardPanel;
+        public GameObject profilePanel;
+        public GameObject payoutPanel;
 
         [Header("Top Panel UI")]
         public Text playerCurrency;
@@ -256,6 +259,9 @@ namespace RGSK
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(false);
                     raceTeamPanel.SetActive(false);
+                    leaderboardPanel.SetActive(false);
+                    profilePanel.SetActive(false);
+                    payoutPanel.SetActive(false);
 
                     if (itemPrice) itemPrice.text = string.Empty;
 
@@ -271,6 +277,9 @@ namespace RGSK
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(false);
                     raceTeamPanel.SetActive(false);
+                    leaderboardPanel.SetActive(false);
+                    profilePanel.SetActive(false);
+                    payoutPanel.SetActive(false);
 
                     if (vehicleName) vehicleName.text = menuVehicles[vehicleIndex].name;
 
@@ -296,6 +305,9 @@ namespace RGSK
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(false);
                     raceTeamPanel.SetActive(false);
+                    leaderboardPanel.SetActive(false);
+                    profilePanel.SetActive(false);
+                    payoutPanel.SetActive(false);
 
                     if (trackName) trackName.text = menuTracks[trackIndex].name;
 
@@ -333,6 +345,9 @@ namespace RGSK
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(false);
                     raceTeamPanel.SetActive(false);
+                    leaderboardPanel.SetActive(false);
+                    profilePanel.SetActive(false);
+                    payoutPanel.SetActive(false);
 
                     //Calculate the in cart currency
                     incartCr = bodyColPrice + rimPrice + upgradePrice;
@@ -369,6 +384,9 @@ namespace RGSK
                     settingsPanel.SetActive(true);
                     loadingPanel.SetActive(false);
                     raceTeamPanel.SetActive(false);
+                    leaderboardPanel.SetActive(false);
+                    profilePanel.SetActive(false);
+                    payoutPanel.SetActive(false);
 
                     if (menuState) menuState.text = "SETTINGS";
 
@@ -382,6 +400,9 @@ namespace RGSK
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(true);
                     raceTeamPanel.SetActive(false);
+                    leaderboardPanel.SetActive(false);
+                    profilePanel.SetActive(false);
+                    payoutPanel.SetActive(false);
 
                     break;
 
@@ -393,8 +414,54 @@ namespace RGSK
                     settingsPanel.SetActive(false);
                     loadingPanel.SetActive(false);
                     raceTeamPanel.SetActive(true);
+                    leaderboardPanel.SetActive(false);
+                    profilePanel.SetActive(false);
+                    payoutPanel.SetActive(false);
 
                     break;
+
+
+                    case State.Leaderboard:
+                         mainPanel.SetActive(false);
+                         vehicleSelectPanel.SetActive(false);
+                         trackSelectPanel.SetActive(false);
+                         customizePanel.SetActive(false);
+                         settingsPanel.SetActive(false);
+                         loadingPanel.SetActive(false);
+                         raceTeamPanel.SetActive(false);
+                         leaderboardPanel.SetActive(true);
+                         profilePanel.SetActive(false);
+                         payoutPanel.SetActive(false);
+
+                         break;
+
+                    case State.Profile:
+                              mainPanel.SetActive(false);
+                              vehicleSelectPanel.SetActive(false);
+                              trackSelectPanel.SetActive(false);
+                              customizePanel.SetActive(false);
+                              settingsPanel.SetActive(false);
+                              loadingPanel.SetActive(false);
+                              raceTeamPanel.SetActive(false);
+                              leaderboardPanel.SetActive(false);
+                              profilePanel.SetActive(false);
+                              payoutPanel.SetActive(true);
+
+                        break;
+
+                    case State.Payout:
+                                   mainPanel.SetActive(false);
+                                   vehicleSelectPanel.SetActive(false);
+                                   trackSelectPanel.SetActive(false);
+                                   customizePanel.SetActive(false);
+                                   settingsPanel.SetActive(false);
+                                   loadingPanel.SetActive(false);
+                                   raceTeamPanel.SetActive(false);
+                                   leaderboardPanel.SetActive(false);
+                                   profilePanel.SetActive(false);
+                                   payoutPanel.SetActive(true);
+
+                         break;
 
 
             }
@@ -874,6 +941,45 @@ namespace RGSK
             UpdateUI();
         }
 
+        public void RaceTeam()
+        {
+            ButtonSFX();
+
+            state = State.RaceTeam;
+
+            UpdateUI();
+        }
+
+
+        public void Leaderboard()
+        {
+            ButtonSFX();
+
+            state = State.Leaderboard;
+
+            UpdateUI();
+        }
+
+        public void Payout()
+        {
+            ButtonSFX();
+
+            state = State.Payout;
+
+            UpdateUI();
+        }
+
+        public void Profile()
+        {
+            ButtonSFX();
+
+            state = State.Profile;
+
+            UpdateUI();
+        }
+
+
+
         public void Customize()
         {
             ButtonSFX();
@@ -1161,6 +1267,24 @@ namespace RGSK
                 case State.Settings:
                     state = previousState;
                     break;
+
+                    case State.RaceTeam:
+                        state = State.Main;
+                        break;
+
+                    case State.Leaderboard:
+                        state = State.Main;
+                        break;
+
+                  case State.Payout:
+                            state = State.Main;
+                        break;
+
+                  case State.Profile:
+                                state = State.Main;
+                    break;
+
+
             }
 
             UpdateUI();
