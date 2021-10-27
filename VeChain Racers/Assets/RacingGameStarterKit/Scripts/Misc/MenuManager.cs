@@ -444,8 +444,8 @@ namespace RGSK
                               loadingPanel.SetActive(false);
                               raceTeamPanel.SetActive(false);
                               leaderboardPanel.SetActive(false);
-                              profilePanel.SetActive(false);
-                              payoutPanel.SetActive(true);
+                              profilePanel.SetActive(true);
+                              payoutPanel.SetActive(false);
 
                         break;
 
