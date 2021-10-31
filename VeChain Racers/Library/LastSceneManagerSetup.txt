@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/RacingGameStarterKit/Scenes/Demo/Car/CarMenu.unity
+- path: Assets/RacingGameStarterKit/Scenes/Demo/Car/Track_VETPets.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
