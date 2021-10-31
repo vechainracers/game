@@ -38,6 +38,15 @@ namespace RGSK
         {
             public string name;
             public string trackLength;
+            public string trackDescription;
+            public string trackBodyType;
+            public string leaderboardTier1;
+            public string leaderboardTier2;
+            public string leaderboardTier3;
+            public string leaderboardTier4;
+            public string leaderboardTier5;
+
+            public string trackGameplay;
             public string sceneName;
             public Sprite image;
             public RaceManager.RaceType raceType = RaceManager.RaceType.Circuit;
@@ -126,7 +135,7 @@ namespace RGSK
 
         [Header("Track Select UI")]
         public Image trackImage;
-        public Text trackName, raceType, lapCount, aiCount, aiDifficulty, bestTime, trackLength;
+        public Text trackName, raceType, lapCount, aiCount, aiDifficulty, bestTime, trackLength, trackBodyType, trackDescription, trackGameplay, leaderboardTier1, leaderboardTier2, leaderboardTier3, leaderboardTier4, leaderboardTier5;
         public Button raceButton, buyTrackButton;
 
         [Header("Customization UI")]
@@ -313,6 +322,8 @@ namespace RGSK
 
                     if (trackLength) trackLength.text = menuTracks[trackIndex].trackLength;
 
+
+
                     if (trackImage && menuTracks[trackIndex].image) trackImage.sprite = menuTracks[trackIndex].image;
 
                     if (raceType) raceType.text = menuTracks[trackIndex].raceType.ToString();
@@ -320,6 +331,22 @@ namespace RGSK
                     if (lapCount) lapCount.text = menuTracks[trackIndex].laps.ToString();
 
                     if (aiCount) aiCount.text = menuTracks[trackIndex].aiCount.ToString();
+
+                    if (trackDescription) trackDescription.text = menuTracks[trackIndex].trackDescription.ToString();
+
+                    if (trackBodyType) trackBodyType.text = menuTracks[trackIndex].trackBodyType.ToString();
+
+                    if (leaderboardTier1) leaderboardTier1.text = menuTracks[trackIndex].leaderboardTier1.ToString();
+
+                    if (leaderboardTier2) leaderboardTier2.text = menuTracks[trackIndex].leaderboardTier2.ToString();
+
+                    if (leaderboardTier3) leaderboardTier3.text = menuTracks[trackIndex].leaderboardTier3.ToString();
+
+                    if (leaderboardTier4) leaderboardTier4.text = menuTracks[trackIndex].leaderboardTier4.ToString();
+
+                    if (leaderboardTier5) leaderboardTier5.text = menuTracks[trackIndex].leaderboardTier5.ToString();
+
+                    if (trackGameplay) trackGameplay.text = menuTracks[trackIndex].trackGameplay.ToString();
 
                     if (aiDifficulty) aiDifficulty.text = menuTracks[trackIndex].aiDifficulty.ToString();
 
